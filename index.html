@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>California House Price Prediction</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🏡 California House Price Prediction</h1>
+
+    <p>Enter the housing details below</p>
+
+    <form action="/predict" method="POST">
+
+        {% for col in columns %}
+
+        <div class="input-group">
+
+            <label>{{ col }}</label>
+
+            <input
+                type="number"
+                step="any"
+                name="{{ col }}"
+                placeholder="Enter {{ col }}"
+                required>
+
+        </div>
+
+        {% endfor %}
+
+        <button type="submit">
+            Predict Price
+        </button>
+
+    </form>
+
+    {% if prediction %}
+
+    <div class="result">
+
+        Predicted House Value
+
+        <h2>${{ prediction }}</h2>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>
